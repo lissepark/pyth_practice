@@ -31,7 +31,31 @@ print('The quotient of', d, 'and', e, 'is', d//e, 'with a remainder of', d%e)
 
 '''Exercise 1.10.4.1. Write a version of Exercise 1.10.3.1, add3f.py, that uses the string format method
 to construct the final string.'''
-
+a = int(input("Enter the first integer, please: "))
+b = int(input("Enter the second integer, please: "))
+c = int(input("Enter the third integer, please: "))
+print('The first integer is: {}'.format(a))
+print('The second integer is: {}'.format(b))
+print('The third integer is: {}'.format(c))
+print('The sum of {0} and {1} and {2} is: {3}'.format(a,b,c,a+b+c))
 
 '''Exercise 1.10.4.2. Write a version of Exercise 1.10.3.2, quotientformat.py, that uses the string
 format method to construct the final string.'''
+d = int(input("Enter the first integer, please: "))
+e = int(input("Enter the second integer, please: "))
+print('The quotient of {} and {} is {} with a remainder of {}'.format(d,e,d//e,d%e))
+
+'''Exercise 1.11.3.1. Write a program, poem.py, that defines a function that prints a short poem or
+song verse. Give a meaningful name to the function. Have the program end by calling the function three
+times, so the poem or verse is repeated three times.'''
+def songVerse():
+    print('nella mente, nel cuore mia')
+    print('nei miei giorni e nel tempo mia')
+    print('non tremar, non aver paura')
+    print("non sei un'avventura e sei mia")
+
+for i in range(1,4):
+    songVerse()
+
+'''the next'''
+
