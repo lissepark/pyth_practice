@@ -57,5 +57,40 @@ def songVerse():
 for i in range(1,4):
     songVerse()
 
+'''Exercise 1.11.4.1. Make your own further change to the file and save it as birthdayMany.py: Add a
+function call, so Maria gets a verse, in addition to Emily and Andre. Also print a blank line between verses.
+(You may either do this by adding a print line to the function definition, or by adding a print line between
+all calls to the function.)'''
+def happyBirth(person):
+    print('Happy birthday to you!')
+    print('Happy birthday to you!')
+    print('Happy birthday, dear '+person+'!')
+    print('Happy birthday to you!')
+
+person1=input('Enter the name: ')
+person2=input('Enter the name: ')
+def main():
+    print(happyBirth(person1))
+    print('')
+    print(happyBirth(person2))
+main()
+
+'''Exercise 1.11.5.1. Modify the program above and save it as quotientProb.py. The new program
+should have a quotientProblem function, printing as in the Exercise 1.10.3.2. The main method should test
+the function on several sets of literal values, and also test the function with input from the user.'''
+def quotientProblem(x, y):
+    quot = x//y
+    remaind = x%y
+    print('The quotient of ', x, 'and ', y, 'is ', quot, 'with a remainder of ', remaind)
+    
+def main():
+    quotientProblem(2, 3)
+    quotientProblem(1234567890123, 535790269358)
+    a = int(input("Enter an integer: "))
+    b = int(input("Enter another integer: "))
+    quotientProblem(a, b)
+
+main()
+
 '''the next'''
 
