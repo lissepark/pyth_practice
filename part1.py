@@ -1,11 +1,12 @@
-'''Exercise 1.5.1.1. Figure out how to give Python the string containing the text: Iâ€™m happy. Try it.
+# -*- coding: cp1252 -*-
+'''Exercise 1.5.1.1. Figure out how to give Python the string containing the text: I’m happy. Try it.
 If you got an error, try it with another type of quotes, and figure out why that one works and not the first.
 >>> "I'm happy"
 "I'm happy"
 '''
 
-''' Exercise 1.5.2.1. Figure out a compact way to get Python to make the string, â€œYesYesYesYesYesâ€,
-and try it. How about â€œMaybeMaybeMaybeYesYesYesYesYesâ€ ?
+''' Exercise 1.5.2.1. Figure out a compact way to get Python to make the string, “YesYesYesYesYes”,
+and try it. How about “MaybeMaybeMaybeYesYesYesYesYes” ?
 >>> 5*'Yes'
 'YesYesYesYesYes'
 >>> 3*'Maybee' + 'Yes'*5
@@ -91,6 +92,32 @@ def main():
     quotientProblem(a, b)
 
 main()
+
+'''Exercise 1.11.6.1. Create quotientReturn.py by modifying quotientProb.py from Exercise 1.11.5.1 so
+that the program accomplishes the same thing, but everywhere change the quotientProblem function into
+one called quotientString that merely returns the string rather than printing the string directly. Have the
+main function print the result of each call to the quotientString function.'''
+def quotientProblem(x, y):
+    quot = x//y
+    remaind = x%y
+    result = 'The quotient of ', x, 'and ', y, 'is ', quot, 'with a remainder of ', remaind
+    return result
+    
+def main():
+    print(quotientProblem(2, 3))
+    print(quotientProblem(1234567890123, 535790269358))
+    a = int(input("Enter an integer: "))
+    b = int(input("Enter another integer: "))
+    print(quotientProblem(a, b))
+
+main()
+
+'''types.
+Exercise 1.12.1.1. Write a tiny Python program numDict.py that makes a dictionary whose keys
+are the words ’one’, ’two’, ’three’, and ’four’, and whose corresponding values are the numerical equivalents,
+1, 2, 3, and 4 (ints, not strings). Include code to test the resulting dictionary by referencing several of the
+definitions and printing the results.'''
+
 
 '''the next'''
 
