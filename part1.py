@@ -112,12 +112,21 @@ def main():
 
 main()
 
-'''types.
-Exercise 1.12.1.1. Write a tiny Python program numDict.py that makes a dictionary whose keys
+'''Exercise 1.12.1.1. Write a tiny Python program numDict.py that makes a dictionary whose keys
 are the words ’one’, ’two’, ’three’, and ’four’, and whose corresponding values are the numerical equivalents,
 1, 2, 3, and 4 (ints, not strings). Include code to test the resulting dictionary by referencing several of the
 definitions and printing the results.'''
-
+def numDict():
+    sl = dict ()
+    sl['one'] = 1
+    sl['two'] = 2
+    sl['three'] = 3
+    sl['four'] = 4
+    return sl
+def main():
+    sl = numDict()
+    print(sl['one']+sl['two'])
+main()
 
 '''the next'''
 
