@@ -128,5 +128,54 @@ def main():
     print(sl['one']+sl['two'])
 main()
 
-'''the next'''
+'''Exercise 1.13.7.1. Suppose the function sumList, is called with the parameter [5, 2, 4, 7]. Play
+computer on this call. Make sure there is a row in the table for each line executed in the program, each
+time it is executed. In each row enter which program line is being executed and show all changes caused to
+variables by the execution of the line. A table is started for you below. The final line of your table should
+be for line 5, with the comment, “return 18”. If you do something like this longhand, and the same long
+value repeats a number of times, it is more convenient to put a ditto (“) for each repeated variable value or
+even leave it blank. If you want to do it on a computer you can start from the first table in example file
+playComputerSumStub.rtf. First save the file as playComputerSum.rtf.'''
+from prettytable import PrettyTable
+
+def sumNum(nums):
+    t = PrettyTable(['Line', 'Nums', 'Num', 'Sum', 'Comment'])
+    nums1 = nums #1
+    line = 1
+    t.add_row([line, nums, '', '', ''])
+    sum = 0 #2
+    line = 2
+    t.add_row([line, nums, '', sum, ''])
+    for num in nums: #3
+        line = 3
+        t.add_row([line, nums, num, sum, ''])
+        oldSum = sum
+        sum = sum + num #4
+        line = 4
+        t.add_row([line, nums, num, sum, '{} + {} = {}'.format(oldSum,num,oldSum+num)])
+    line = 5
+    t.add_row([line, nums, '', sum, 'return {}'.format(sum)])
+    return t #5
+
+print(sumNum([5, 2, 4, 7]))
+'''
++------+--------------+-----+-----+-------------+
+| Line |     Nums     | Num | Sum |   Comment   |
++------+--------------+-----+-----+-------------+
+|  1   | [5, 2, 4, 7] |     |     |             |
+|  2   | [5, 2, 4, 7] |     |  0  |             |
+|  3   | [5, 2, 4, 7] |  5  |  0  |             |
+|  4   | [5, 2, 4, 7] |  5  |  5  |  0 + 5 = 5  |
+|  3   | [5, 2, 4, 7] |  2  |  5  |             |
+|  4   | [5, 2, 4, 7] |  2  |  7  |  5 + 2 = 7  |
+|  3   | [5, 2, 4, 7] |  4  |  7  |             |
+|  4   | [5, 2, 4, 7] |  4  |  11 |  7 + 4 = 11 |
+|  3   | [5, 2, 4, 7] |  7  |  11 |             |
+|  4   | [5, 2, 4, 7] |  7  |  18 | 11 + 7 = 18 |
+|  5   | [5, 2, 4, 7] |     |  18 |  return 18  |
++------+--------------+-----+-----+-------------+
+'''
+
+'''Exercise 1.13.7.2. Write a program testSumList.py which includes a main function to test the
+sumList function several times. Include a test for the extreme case, with an empty list.'''
 
