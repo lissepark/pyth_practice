@@ -178,4 +178,103 @@ print(sumNum([5, 2, 4, 7]))
 
 '''Exercise 1.13.7.2. Write a program testSumList.py which includes a main function to test the
 sumList function several times. Include a test for the extreme case, with an empty list.'''
+from prettytable import PrettyTable
+def sumNum(nums):
+    t = PrettyTable(['Line', 'Nums', 'Num', 'Sum', 'Comment'])
+    nums1 = nums #1
+    line = 1
+    t.add_row([line, nums, '', '', ''])
+    sum = 0 #2
+    line = 2
+    t.add_row([line, nums, '', sum, ''])
+    for num in nums: #3
+        line = 3
+        t.add_row([line, nums, num, sum, ''])
+        oldSum = sum
+        sum = sum + num #4
+        line = 4
+        t.add_row([line, nums, num, sum, '{} + {} = {}'.format(oldSum,num,oldSum+num)])
+    line = 5
+    t.add_row([line, nums, '', sum, 'return {}'.format(sum)])
+    return t #5
+
+def main(listNums):
+    for list1 in listNums:
+        print(sumNum(list1))
+
+main([[1,2,3,4],[5,6,7,8],[9,8,7,6],[]])
+'''
++------+--------------+-----+-----+------------+
+| Line |     Nums     | Num | Sum |  Comment   |
++------+--------------+-----+-----+------------+
+|  1   | [1, 2, 3, 4] |     |     |            |
+|  2   | [1, 2, 3, 4] |     |  0  |            |
+|  3   | [1, 2, 3, 4] |  1  |  0  |            |
+|  4   | [1, 2, 3, 4] |  1  |  1  | 0 + 1 = 1  |
+|  3   | [1, 2, 3, 4] |  2  |  1  |            |
+|  4   | [1, 2, 3, 4] |  2  |  3  | 1 + 2 = 3  |
+|  3   | [1, 2, 3, 4] |  3  |  3  |            |
+|  4   | [1, 2, 3, 4] |  3  |  6  | 3 + 3 = 6  |
+|  3   | [1, 2, 3, 4] |  4  |  6  |            |
+|  4   | [1, 2, 3, 4] |  4  |  10 | 6 + 4 = 10 |
+|  5   | [1, 2, 3, 4] |     |  10 | return 10  |
++------+--------------+-----+-----+------------+
++------+--------------+-----+-----+-------------+
+| Line |     Nums     | Num | Sum |   Comment   |
++------+--------------+-----+-----+-------------+
+|  1   | [5, 6, 7, 8] |     |     |             |
+|  2   | [5, 6, 7, 8] |     |  0  |             |
+|  3   | [5, 6, 7, 8] |  5  |  0  |             |
+|  4   | [5, 6, 7, 8] |  5  |  5  |  0 + 5 = 5  |
+|  3   | [5, 6, 7, 8] |  6  |  5  |             |
+|  4   | [5, 6, 7, 8] |  6  |  11 |  5 + 6 = 11 |
+|  3   | [5, 6, 7, 8] |  7  |  11 |             |
+|  4   | [5, 6, 7, 8] |  7  |  18 | 11 + 7 = 18 |
+|  3   | [5, 6, 7, 8] |  8  |  18 |             |
+|  4   | [5, 6, 7, 8] |  8  |  26 | 18 + 8 = 26 |
+|  5   | [5, 6, 7, 8] |     |  26 |  return 26  |
++------+--------------+-----+-----+-------------+
++------+--------------+-----+-----+-------------+
+| Line |     Nums     | Num | Sum |   Comment   |
++------+--------------+-----+-----+-------------+
+|  1   | [9, 8, 7, 6] |     |     |             |
+|  2   | [9, 8, 7, 6] |     |  0  |             |
+|  3   | [9, 8, 7, 6] |  9  |  0  |             |
+|  4   | [9, 8, 7, 6] |  9  |  9  |  0 + 9 = 9  |
+|  3   | [9, 8, 7, 6] |  8  |  9  |             |
+|  4   | [9, 8, 7, 6] |  8  |  17 |  9 + 8 = 17 |
+|  3   | [9, 8, 7, 6] |  7  |  17 |             |
+|  4   | [9, 8, 7, 6] |  7  |  24 | 17 + 7 = 24 |
+|  3   | [9, 8, 7, 6] |  6  |  24 |             |
+|  4   | [9, 8, 7, 6] |  6  |  30 | 24 + 6 = 30 |
+|  5   | [9, 8, 7, 6] |     |  30 |  return 30  |
++------+--------------+-----+-----+-------------+
++------+------+-----+-----+----------+
+| Line | Nums | Num | Sum | Comment  |
++------+------+-----+-----+----------+
+|  1   |  []  |     |     |          |
+|  2   |  []  |     |  0  |          |
+|  5   |  []  |     |  0  | return 0 |
++------+------+-----+-----+----------+
+'''
+
+'''
+Exercise 1.13.7.3. Complete the following function. This starting code is in joinAllStub.py. Save
+it to the new name joinAll.py. Note the way an example is given in the documentation string. It simulates
+the use of the function in the Shell. This is a common convention:
+def joinStrings(stringList):
+    Join all the strings in stringList into one string, and return the result. For example:
+>>> print(joinStrings([’very’, ’hot’, ’day’]))
+’veryhotday’
+'''
+def joinStrings(stringList):
+    strBegin = ''
+    for str in stringList:
+        strBegin = strBegin + ' ' + str
+    return strBegin
+print(joinStrings(['very', 'hot', 'day']))
+
+''''''
+
+
 
