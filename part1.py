@@ -274,7 +274,89 @@ def joinStrings(stringList):
     return strBegin
 print(joinStrings(['very', 'hot', 'day']))
 
-''''''
+'''Exercise 1.13.8.1. Play computer on the following code. Reality check: 31 is printed when line 6
+finally executes. Table headings are shown below to get you started with a pencil. Alternately you can work
+in a word processor starting from playComputerStub.rtf, which has tables set up for this and the following
+exercise. Save the file with an alternate name playComputer.rtf.
+x = 0 #1
+y = 1 #2
+for n in [5, 4, 6]: #3
+x = x + y*n #4
+y = y + 1 #5
+print(x) #6'''
+from prettytable import PrettyTable
+def plComp(lst):
+    t = PrettyTable(['Line', 'x', 'y', 'n', 'Comment'])
+    x = 0 #1
+    t.add_row(['1',x,'0','0',''])
+    y = 1 #2
+    t.add_row(['2',x,y,'0',''])
+    for n in lst: #3
+        t.add_row(['3',x,y,n,''])
+        x = x + y*n #4
+        t.add_row(['4',x,y,n,''])
+        y = y + 1 #5
+        t.add_row(['5',x,y,n,''])
+    t.add_row(['6',x,y,n,''])
+    print(x) #6
+    print(t)
 
+plComp([5, 4, 6])
+'''
++------+----+---+---+---------+
+| Line | x  | y | n | Comment |
++------+----+---+---+---------+
+|  1   | 0  | 0 | 0 |         |
+|  2   | 0  | 1 | 0 |         |
+|  3   | 0  | 1 | 5 |         |
+|  4   | 5  | 1 | 5 |         |
+|  5   | 5  | 2 | 5 |         |
+|  3   | 5  | 2 | 4 |         |
+|  4   | 13 | 2 | 4 |         |
+|  5   | 13 | 3 | 4 |         |
+|  3   | 13 | 3 | 6 |         |
+|  4   | 31 | 3 | 6 |         |
+|  5   | 31 | 4 | 6 |         |
+|  6   | 31 | 4 | 6 |         |
++------+----+---+---+---------+
+'''
+
+'''Exercise 1.13.8.2. The following code is supposed to compute the product of the numbers in a list.
+For instance product([5, 4, 6]) should calculate and return 5*4*6=120 in steps, calculating 5, 5*4=20
+and 20*6=120 . Play computer on a call to product([5, 4, 6]) until you see that it makes a mistake. This
+code appears in the example file numProductWrong.py. Save it as numProduct.py and fix the error (and
+save again!). Table headings and the first row are shown below to get you started with a pencil. Alternately
+you can work in a word processor continuing to add to playComputer.rtf, started in the previous exercise.
+def product(nums):
+    for n in nums:
+        prod = 1
+        prod = prod*n
+    return prod
+'''
+def product(nums):
+    prod = 1 #fix
+    for n in nums:
+        prod = prod*n
+    return prod
+
+print(product([5,4,6]))
+
+'''Exercise 1.13.8.3. Play computer on the following code. Table headings are shown for you. Reality
+check: 70 is printed. See the previous exercises if you enter your answer in a file.
+def f(x):
+    return x+4
+
+print(f(3)*f(6)) #3'''
+def f(x):
+    return x+4
+
+print(f(3)*f(6))
+
+'''Exercise 1.14.3.1. Write a program, discount.py, that prompts the user for an original price and
+for a discount percentage and prints out the new price to the nearest cent. For example if the user enters
+2.89 for the price and 20 for the discount percentage, the value would be (1- 20/100)*2.89, rounded to two
+decimal places, 2.31. For price .65 with a 25 percent discount, the value would be (1- 25/100)*.65, rounded
+to two decimal places, .49. 10 Write the general calculation code following the pattern of the calculations
+illustrated in the two concrete examples.'''
 
 
