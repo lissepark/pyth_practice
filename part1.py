@@ -358,5 +358,9 @@ for a discount percentage and prints out the new price to the nearest cent. For 
 decimal places, 2.31. For price .65 with a 25 percent discount, the value would be (1- 25/100)*.65, rounded
 to two decimal places, .49. 10 Write the general calculation code following the pattern of the calculations
 illustrated in the two concrete examples.'''
-
-
+price = input('Enter the price: ')
+disc = input('Enter the discount (%, e.g. 15): ')
+res = int(price)*(1-(int(disc))/100)
+print('Price is: ', price)
+print('Discount is: {}%'.format(disc))
+print('Total price is: ', res)
