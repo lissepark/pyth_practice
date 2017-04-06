@@ -360,7 +360,11 @@ to two decimal places, .49. 10 Write the general calculation code following the 
 illustrated in the two concrete examples.'''
 price = input('Enter the price: ')
 disc = input('Enter the discount (%, e.g. 15): ')
-res = int(price)*(1-(int(disc))/100)
+try:
+    res = float(price)*(1-(float(disc))/100)
+    res_displ = format(res,'.2f')
+except ValueError:
+    print('Some error occured. Check, please, if was print , instead .')
 print('Price is: ', price)
 print('Discount is: {}%'.format(disc))
-print('Total price is: ', res)
+print('Total price is: ', res_displ)
