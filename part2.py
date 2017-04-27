@@ -101,4 +101,225 @@ def main():
     win.close()
 main()
 
+'''Exercise 4.8.1. Save backAndForth3.py to the new name backAndForth4.py. Add a triangular
+nose in the middle of the face in the makeFace function. Like the other features of the face, make sure the
+position of the nose is relative to the center parameter. Make sure the nose is included in the final list of
+elements of the face that get returned.'''
+from graphics import *
+import time
+def moveAll(shapeList, dx, dy):
+    for shape in shapeList:
+        shape.move(dx, dy)
+def moveAllOnLine(shapeList, dx, dy, repetitions, delay):
+    for i in range(repetitions):
+        moveAll(shapeList, dx, dy)
+        time.sleep(delay)
+def makeFace(center, win):
+    head = Circle(center, 25)
+    head.setFill("yellow")
+    head.draw(win)
+    eye1Center = center.clone() # face positions are relative to the center
+    eye1Center.move(-10, 5)
+    # locate further points in relation to others
+    eye1 = Circle(eye1Center, 5)
+    eye1.setFill('blue')
+    eye1.draw(win)
+    eye2End1 = eye1Center.clone()
+    eye2End1.move(15, 0)
+    eye2End2 = eye2End1.clone()
+    eye2End2.move(10, 0)
+    eye2 = Line(eye2End1, eye2End2)
+    eye2.setWidth(3)
+    eye2.draw(win)
+    mouthCorner1 = center.clone()
+    mouthCorner1.move(-10, -10)
+    mouthCorner2 = mouthCorner1.clone()
+    mouthCorner2.move(20, -5)
+    mouth = Oval(mouthCorner1, mouthCorner2)
+    mouth.setFill("red")
+    mouth.draw(win)
+    #nose
+    noseP1 = center.clone()
+    noseP1.move(-3,0)
+    noseP2 = noseP1.clone()
+    noseP2.move(6,0)
+    noseP3 = noseP2.clone()
+    noseP3.move(-3,-4)
+    nose = Polygon(noseP1,noseP2,noseP3)
+    nose.setFill("green")
+    nose.draw(win)
+    return [head, eye1, eye2, mouth,nose]
+def main():
+    winWidth = 300
+    winHeight = 300
+    win = GraphWin('Back and Forth', winWidth, winHeight)
+    win.setCoords(0, 0, winWidth, winHeight) # make right side up coordinates!
+    rect = Rectangle(Point(200, 90), Point(220, 100))
+    rect.setFill("blue")
+    rect.draw(win)
+    faceList = makeFace(Point(40, 100), win)
+    faceList2 = makeFace(Point(150,125), win)
+    stepsAcross = 46
+    dx = 5
+    dy = 3
+    wait = .05
+    for i in range(3):
+        moveAllOnLine(faceList, dx, 0, stepsAcross, wait)
+        moveAllOnLine(faceList, -dx, dy, stepsAcross//2, wait)
+        moveAllOnLine(faceList, -dx, -dy, stepsAcross//2, wait)
+    Text(Point(winWidth/2, 20), 'Click anywhere to quit.').draw(win)
+    win.getMouse()
+    win.close()
+main()
 
+'''Exercise 4.8.2. Make a program faces.py that asks the user to click the mouse, and then draws
+a face at the point where the user clicked. Elaborate this with a simple repeat loop, so a face appears for
+each of 6 clicks.'''
+from graphics import *
+import time
+def moveAll(shapeList, dx, dy):
+    for shape in shapeList:
+        shape.move(dx, dy)
+def moveAllOnLine(shapeList, dx, dy, repetitions, delay):
+    for i in range(repetitions):
+        moveAll(shapeList, dx, dy)
+        time.sleep(delay)
+def makeFace(winWidth,win):
+    clickCenter = Text(Point(winWidth/2, 60), 'Click anywhere to draw face in that position.')
+    clickCenter.draw(win)
+    center = win.getMouse()
+    clickCenter.undraw()
+    head = Circle(center, 25)
+    head.setFill("yellow")
+    head.draw(win)
+    eye1Center = center.clone() # face positions are relative to the center
+    eye1Center.move(-10, 5)
+    # locate further points in relation to others
+    eye1 = Circle(eye1Center, 5)
+    eye1.setFill('blue')
+    eye1.draw(win)
+    eye2End1 = eye1Center.clone()
+    eye2End1.move(15, 0)
+    eye2End2 = eye2End1.clone()
+    eye2End2.move(10, 0)
+    eye2 = Line(eye2End1, eye2End2)
+    eye2.setWidth(3)
+    eye2.draw(win)
+    mouthCorner1 = center.clone()
+    mouthCorner1.move(-10, -10)
+    mouthCorner2 = mouthCorner1.clone()
+    mouthCorner2.move(20, -5)
+    mouth = Oval(mouthCorner1, mouthCorner2)
+    mouth.setFill("red")
+    mouth.draw(win)
+    #nose
+    noseP1 = center.clone()
+    noseP1.move(-3,0)
+    noseP2 = noseP1.clone()
+    noseP2.move(6,0)
+    noseP3 = noseP2.clone()
+    noseP3.move(-3,-4)
+    nose = Polygon(noseP1,noseP2,noseP3)
+    nose.setFill("green")
+    nose.draw(win)
+    return [head, eye1, eye2, mouth,nose]
+def main():
+    winWidth = 300
+    winHeight = 300
+    win = GraphWin('Back and Forth', winWidth, winHeight)
+    win.setCoords(0, 0, winWidth, winHeight)
+    rect = Rectangle(Point(200, 90), Point(220, 100))
+    rect.setFill("blue")
+    rect.draw(win)
+    for r in range(6):
+        faceList = makeFace(winWidth,win)
+    stepsAcross = 46
+    dx = 5
+    dy = 3
+    wait = .05
+    for i in range(3):
+        moveAllOnLine(faceList, dx, 0, stepsAcross, wait)
+        moveAllOnLine(faceList, -dx, dy, stepsAcross//2, wait)
+        moveAllOnLine(faceList, -dx, -dy, stepsAcross//2, wait)
+    Text(Point(winWidth/2, 20), 'Click anywhere to quit.').draw(win)
+    win.getMouse()
+    win.close()
+main()
+
+'''Exercise 4.8.3. Animate two faces moving in different directions at the same time in a program
+move2Faces.py. You cannot use the moveAllOnLine function. You will have to make a variation of your
+own. You can use the moveAll function separately for each face. Hint: imagine the old way of making an
+animated cartoon. If each face was on a separate piece of paper, and you wanted to animate them moving
+together, you would place them separately, record one frame, move them each a bit toward each other, record
+another frame, move each another bit toward each other, record another frame, .... In our animations “record
+a frame” is replaced by a short sleep to make the position visible to the user. Make a loop to incorporate
+the repetition of the moves.'''
+from graphics import *
+import time
+def moveAll(shapeList, dx, dy):
+    for shape in shapeList:
+        shape.move(dx, dy)
+def makeFace(winWidth,win):
+    clickCenter = Text(Point(winWidth/2, 60), 'Click anywhere to draw face in that position.')
+    clickCenter.draw(win)
+    center = win.getMouse()
+    clickCenter.undraw()
+    head = Circle(center, 25)
+    head.setFill("yellow")
+    head.draw(win)
+    eye1Center = center.clone() # face positions are relative to the center
+    eye1Center.move(-10, 5)
+    # locate further points in relation to others
+    eye1 = Circle(eye1Center, 5)
+    eye1.setFill('blue')
+    eye1.draw(win)
+    eye2End1 = eye1Center.clone()
+    eye2End1.move(15, 0)
+    eye2End2 = eye2End1.clone()
+    eye2End2.move(10, 0)
+    eye2 = Line(eye2End1, eye2End2)
+    eye2.setWidth(3)
+    eye2.draw(win)
+    mouthCorner1 = center.clone()
+    mouthCorner1.move(-10, -10)
+    mouthCorner2 = mouthCorner1.clone()
+    mouthCorner2.move(20, -5)
+    mouth = Oval(mouthCorner1, mouthCorner2)
+    mouth.setFill("red")
+    mouth.draw(win)
+    noseP1 = center.clone()
+    noseP1.move(-3,0)
+    noseP2 = noseP1.clone()
+    noseP2.move(6,0)
+    noseP3 = noseP2.clone()
+    noseP3.move(-3,-4)
+    nose = Polygon(noseP1,noseP2,noseP3)
+    nose.setFill("green")
+    nose.draw(win)
+    return [head,eye1,eye2,mouth,nose]
+def main():
+    winWidth = 300
+    winHeight = 300
+    win = GraphWin('Back and Forth', winWidth, winHeight)
+    win.setCoords(0, 0, winWidth, winHeight)
+    faceList1 = makeFace(winWidth,win)
+    faceList2 = makeFace(winWidth,win)
+    stepsAcross = 50
+    dx1 = 5
+    dy1 = 3
+    wait1 = .05
+    dx2 = -3
+    dy2 = -2
+    wait2 = .04
+    for o in range(stepsAcross):
+        moveAll(faceList1, dx1, dy1)
+        moveAll(faceList2, dx2, dy2)
+        time.sleep(wait1)
+    Text(Point(winWidth/2, 20), 'Click anywhere to quit.').draw(win)
+    win.getMouse()
+    win.close()
+main()
+
+'''
+
+'''
