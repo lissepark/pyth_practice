@@ -320,6 +320,101 @@ def main():
     win.close()
 main()
 
-'''
+'''Exercise 4.12.1. Write a program ranges.py that uses the range function to produce the sequnce
+1, 2, 3, 4, and then print it. Also prompt the user for an integer n and print the sequnce 1, 2, 3, ... , n –
+including n. Hint: 8 Finally use a simple repeat loop to find and print five randomly chosen numbers from
+the range 1, 2, 3, ... , n .'''
+import random
 
-'''
+s = input('Please type an number: ')
+print(s)
+k = int(s)
+
+def simpleRange(n):
+    for t in range (1,n+1):
+        print(t)
+print('------------------------------')
+def randRange(n):
+    for t in range (5):
+        print(random.randrange(1,n+1))
+
+def mainRand(k):
+    simpleRange(k)
+    print('-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-')
+    randRange(k)
+
+mainRand(k)
+
+'''Exercise 5.0.2. Make the following programs in sequence. Be sure to save the programs in the same
+directory as where you start the idle shortcut and where you have all the sample text files:
+* a. printUpper.py: read the contents of the sample2.txt file and print the contents out in upper case. (This
+should use file operations and should work no matter what the contents are in sample2.txt. Do not assume
+the particular string written by nextFile.py!)
+* b. fileUpper.py: prompt the user for a file name, read and print the contents of the requested file in upper
+case.
+* c. copyFileUpper: modify fileUpper.py to write the upper case string to a new file rather than printing
+it. Have the name of the new file be dynamically derived from the old name by prepending ’UPPER’ to
+the name. For example, if the user specified the file sample.txt (from above), the program would create
+a file UPPERsample.txt, containing ’MY FIRST OUTPUT FILE!’. When the user specifies the file name
+stuff.txt, the resulting file would be named UPPERstuff.txt.'''
+fileOut = open('sample2.txt','r')
+context = fileOut.read()
+print(context.upper())
+inp = input('Type, please, the file name')
+fileOut2 = open(inp,'r')
+context2 = fileOut2.read()
+print(context2.upper())
+
+fileInUpper = open('UPPER'+inp,'w')
+fileInUpper.write(context2.upper())
+fileInUpper.close()
+
+'''Exercise 5.0.3. Write madlib3.py, a small modification of madlib2.py, requiring only a modification
+to the main function of madlib2.py. Your madlib3.py should prompt the user for the name of a file that
+should contain a madlib format string as text (with no quotes around it). Read in this file and use it as the
+format string in the tellStory function. This is unlike in madlib2.py, where the story is a literal string
+coded directly into the program called originalStory. The tellstory function and particularly the getKeys
+function were developed and described in detail in this tutorial, but for this exercise there is no need to
+follow their inner workings - you are just a user of the tellstory function (and the functions that it calls).
+You do not need to mess with the code for the definition of tellStory or any of the earlier supporting
+functions. The original madlib string is already placed in a file jungle.txt, that is in this format as an
+example. With the Idle editor, write another madlib format string into a file myMadlib.txt. If you earlier
+created a file myMadlib.py, then you can easily extract the story from there (without the quotes around it).
+Test your program both with jungle.txt and your new madlib story file.'''
+def getKeys(formatString): # change: returns a set
+    '''formatString is a format string with embedded dictionary keys.
+    Return a set containing all the keys from the format string.'''
+    keyList = list()
+    end = 0
+    repetitions = formatString.count('{')
+    for i in range(repetitions):
+        start = formatString.find('{', end) + 1
+        end = formatString.find('}', start)
+        key = formatString[start : end]
+        keyList.append(key) # may add duplicates
+    return set(keyList) # removes duplicates: no duplicates in a set
+def addPick(cue, dictionary): # from madlib.py
+    '''Prompt the user and add one cue to the dictionary.'''
+    prompt = 'Enter an example for ' + cue + ': '
+    dictionary[cue] = input(prompt)
+def getUserPicks(cues):
+    '''Loop through the collection of cue keys and get user choices.
+    Return the resulting dictionary.
+    '''
+    userPicks = dict()
+    for cue in cues:
+        addPick(cue, userPicks)
+    return userPicks
+def tellStory(story):
+    '''story is a format string with Python dictionary references embedded,
+    in the form {cue}. Prompt the user for the mad lib substitutions
+    and then print the resulting story with the substitutions.
+    '''
+    cues = getKeys(story)
+    userPicks = getUserPicks(cues)
+    print(story.format(**userPicks))
+def main():
+    fileOut = open('UPPERsample.txt','r')
+    originalStory = fileOut.read()
+    tellStory(originalStory)
+main()
