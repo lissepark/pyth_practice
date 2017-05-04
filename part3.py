@@ -179,3 +179,75 @@ t_room1.outplases()
 t_2 = Table(1,3,0.7)
 t_2.outing()
 #t_2.howplaces(8) # ОШИБКА
+
+#once more class
+class OfficeTable(Table):
+     def setForm(self,form):
+          self.form = form
+     def setColor(self,color):
+          self.color = color
+
+officeTable = OfficeTable(2,3,1)
+officeTable.outing()
+officeTable.setForm('oval')
+officeTable.setColor('brown')
+print(officeTable.color,officeTable.form)
+
+'''2.8 Напишіть програму, де клас «геометричні фігури» (figure) містить властивість color з початковим
+значенням white і метод для зміни кольору фігури, а його підкласи «овал» (oval) і «квадрат» (square) містять методи
+__init__ для завдання початкових розмірів об'єктів при їх створенні.'''
+class Figure:
+     color = 'white'
+     def colorChange(self,newColor):
+          self.color = newColor
+
+class Oval(Figure):
+     def __init__(self,length=100,width=60):
+          self.length = length
+          self.width = width
+     def setLength(self,newLength):
+          self.length = newLength
+     def setWidth(self,newWidth):
+          self.width = newWidth
+
+class Square(Figure):
+     def __init__(self,side=60):
+          self.side = side
+     def setSide(self,newSide):
+          self.side = newSide
+
+oval = Oval()
+square = Square()
+
+print(oval.color,oval.length,oval.width)
+print(square.color,square.side)
+
+oval.colorChange('green')
+oval.setLength(80)
+square.colorChange('blue')
+square.setSide(75)
+print(oval.color,oval.length,oval.width)
+print(square.color,square.side)
+
+'''Напишіть програму, що запитує у користувача введення числа. Якщо число належить діапазону від -100 до
+100, то створюється об'єкт одного класу, в усіх інших випадках створюється об'єкт іншого класу. В обох класах
+повинен бути метод-конструктор __init__, який в першому класі зводить число в квадрат, а по-другому – множить на
+два.'''
+class Sqr:
+    def __init__(self,n):
+        self.res = n*n
+        print(self.res)
+
+class Mult:
+    def __init__(self,n):
+        self.res = n*2
+        print(self.res)
+
+inp = input('Please type a number')
+n = int(inp)
+if n < 100 and n > (-100):
+    sqrr = Sqr(n)
+else:
+    mult = Mult(n)
+
+
