@@ -250,4 +250,106 @@ if n < 100 and n > (-100):
 else:
     mult = Mult(n)
 
+'''Напишіть невелику об'єктно-орієнтовану програму, яка демонструвала б такі властивості ООП як спадкування
+і поліморфізм.'''
+class Vehicle:
+     def __init__(self,wheel=4,door=2,steering='right'):
+          self.wheel = wheel
+          self.door = door
+          self.steering = steering
+
+     def out(self):
+          print(self.wheel,self.door,self.steering)
+
+class Track(Vehicle):
+     wheel = 10          
+     def out(self):
+          print("It's a track")
+          Vehicle.out(self)
+          print('track go')
+
+class Van(Vehicle):
+     door = 5
+     def out(self):
+         print("It's a van")
+         Vehicle.out(self)
+         print('van go')
+
+vehicle = Vehicle()
+vehicle.out()
+print('-----------------------------------------')
+track = Track()
+track.wheel = 10
+track.out()
+print('-----------------------------------------')
+van = Van()
+van.door = 5
+van.out()
+
+
+class Win_Door:
+     def __init__(self,x,y):
+          self.square = x * y
+
+class Room:
+     def __init__(self,x,y,z):
+          self.square = 2 * z * (x + y)
+     def win_door(self, d,e, f,g, m=1,n=1):
+          self.window = Win_Door(d,e)
+          self.door = Win_Door(f,g)
+          self.numb_w = m
+          self.numb_d = n
+     def wallpapers(self):
+          self.wallpapers = self.square - \
+               self.window.square * self.numb_w \
+               - self.door.square * self.numb_d
+     def printer(self):
+          print ("Площадь стен комнаты равна "\
+          ,str(self.square)," кв.м")
+          print ("Оклеиваемая площадь равна: ", \
+               str(self.wallpapers), " кв.м")
+
+labor34 = Room(5,4,2)
+labor34.win_door(1.5,1.5, 2,1, 2)
+labor34.wallpapers()
+labor34.printer()
+'''Площадь стен комнаты равна  36  кв.м
+Оклеиваемая площадь равна:  29.5  кв.м'''
+
+'''Спробуйте самостійно придумати задачу, для вирішення якої можна використовувати композиційний підхід.
+Напишіть програму на Python.'''
+class Engine:
+     def __init__(self,m=100):
+          self.m = m
+          print('Engine\'s weight is: ',m,'kg')
+          
+class CarBody:
+     def __init__(self,m=100):
+          self.m = m
+          print('Car body\'s weight is: ',m,'kg')
+     
+class Car:
+     def __init__(self,m=600):
+          self.m = m
+     def mEngine(self,mE):
+          self.mE = Engine(mE)
+     def mCarBody(self,mCB):
+          self.mCB = CarBody(mCB)
+     def calcWeight(self):
+          self.totalWeight = self.m+self.mE.m+self.mCB.m
+          print('Car\'s total weight is: ',self.totalWeight,'kg')
+
+car1 = Car()
+car1.mEngine(150)
+car1.mCarBody(140)
+car1.calcWeight()
+
+
+
+
+
+
+
+
+
 
