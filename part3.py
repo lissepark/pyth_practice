@@ -344,7 +344,46 @@ car1.mEngine(150)
 car1.mCarBody(140)
 car1.calcWeight()
 
+'''Доповніть клас методами __mul__ (викликається при використанні об'єкта в операціях множення) і __sub__ (віднімання).
+Викличте дані методи за допомогою відповідних операцій з об'єктами.'''
+class Newclass:
+     def __init__(self,base):
+          self.base = base
+     def __add__(self,a):
+          self.base = self.base+a
+     def __mul__(self,a):
+          self.base = self.base*a
+     def __sub__(self,a):
+          self.base = self.base-a
+     def __str__(self):
+          return "%s !!! " % self.base
 
+a = Newclass(10)
+a + 20
+print(a)
+a - 10
+print(a)
+a*5
+print(a)
+print("------------------------------------------------------")
+
+b = Newclass("yes")
+b+"terday"
+print(b)
+b*5
+print(b)
+#b - "ay" ERROR
+print("------------------------------------------------------")
+
+c = Newclass([2,6,3])
+c+[7,1]
+print(c)
+c * 5
+print(c)
+#c - 3 ERROR
+
+'''Для яких об'єктів неможливо використовувати метод __sub__?
+для строк та списків'''
 
 
 
