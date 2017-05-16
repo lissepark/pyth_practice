@@ -381,14 +381,66 @@ print(c)
 c * 5
 print(c)
 #c - 3 ERROR
-
 '''Для яких об'єктів неможливо використовувати метод __sub__?
 для строк та списків'''
 
+'''Створіть клас з методом __call__, що приймає два параметри і здійснєю над ними ті чи інші математичні операції.
+Створіть кілька об'єктів класу і, потім, зверніться до них як до функцій.'''
+class CallExample:
+     def __init__(self,base):
+          self.base = base
+     def __call__(self,a,b,c):
+          self.res = self.base+(a*b)-c
+     def __str__(self):
+          return "Call result is %s" % self.res
 
+w = CallExample(5)
+w(2,2,3)
+print(w)
+'''Call result is 6'''
 
+'''Напишіть рядки документації до програми обчислення площі обклеювання.
+Помістіть наступну інформацію:
+- Модуль. Для чого призначена дана програма.
+- Класи. Для чого призначені, які аргументи передаються методу __init__.
+- Методи (крім __init__). Призначення, опис вхідних та вихідних даних.
+Використовуючи метод __doc__, викличте в інтерактивному режимі рядка документації для різних об'єктів модуля.
+Попередньо необхідно імпортувати модуль (щоб імпортувати його без проблем, помістіть файл в каталог установки python).
+Застосуйте функцію help для даного модуля. Наприклад, якщо ім'я модуля rooms, то виклик довідки про нього буде виглядати так: help (rooms).'''
 
+class Win_Door:
+     '''Class Win_Door. It's created for calculating of square of all doors and windows.
+    Constructor get two arguments: length and width'''
+     def __init__(self,x,y):
+          self.square = x * y
 
+class Room:
+     '''Class Room. It's created for calculating room's square without doors and windows.
+    Constructor get three arguments: length, height and width of the room'''
+     def __init__(self,x,y,z):
+          self.square = 2 * z * (x + y)
+     def win_door(self, d,e, f,g, m=1,n=1):
+          '''Method win_door. Created for calculating of square of all doors and windows in the room.
+    Get two arguments: length and width of a door or a window'''
+          self.window = Win_Door(d,e)
+          self.door = Win_Door(f,g)
+          self.numb_w = m
+          self.numb_d = n
+     def wallpapers(self):
+          '''Method wallpapers. It's created for calculating room's square without doors and windows.
+    Get no arguments.'''
+          self.wallpapers = self.square - \
+               self.window.square * self.numb_w \
+               - self.door.square * self.numb_d
+     def printer(self):
+          '''Method printer. It's created for printing calculation results.'''
+          print ("Площадь стен комнаты равна "\
+          ,str(self.square)," кв.м")
+          print ("Оклеиваемая площадь равна: ", \
+               str(self.wallpapers), " кв.м")
 
-
-
+labor34 = Room(5,4,2)
+print(labor34.__doc__)
+print(labor34.wallpapers.__doc__)
+print(labor34.win_door.__doc__)
+help(labor34)
